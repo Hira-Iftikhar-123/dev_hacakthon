@@ -81,73 +81,71 @@ Requirements:
 • Knowledge of modern frontend build pipelines and tools
 • Excellent problem-solving skills and attention to detail`,
 }
-
 const dummyResumeText = `
-Eraj Tanweer
-Karachi, Pakistan | erajtanweer2@gmail.com | WhatsApp: 0333-2162005 | LinkedIn | GitHub
+JOHN DOE  
+New York, USA | john.doe@example.com | WhatsApp: +1-555-123-4567 | LinkedIn | GitHub
 
-EDUCATION
-NED University of Engineering and Technology Karachi, Pakistan
-B.E. in Software Engineering   May 2022 - Jun 2026
-• Concentrations: Artificial Intelligence and Web Development
-• Related Coursework: Data Structures & Algorithms, Object-Oriented Programming, Web Engineering, DBMS, Software Construction and Development, Software Design and Architecture
+EDUCATION  
+Tech Valley University, California, USA  
+B.Sc. in Computer Science   Sep 2021 - May 2025  
+Concentrations: Data Science and Cloud Computing  
+Related Coursework: Operating Systems, Computer Networks
 
-EXPERIENCE
+EXPERIENCE  
 
-Quality Enhancement Cell (QEC) – NED | Karachi, Pakistan
-Intern  |  Feb 2024 – Jun 2024
-● Worked with the team on QEC portal project using NodeJS and ExpressJS.
-● Created automated workflow to eliminate old manual process to enhance accuracy and efficiency.
+CloudCore Labs | San Francisco, USA  
+Software Intern  |  Jan 2024 - Apr 2024  
+Worked on microservices using Node.js and MongoDB.  
+Automated deployment pipelines for faster integration.
 
-Headstarter AI | New York, USA
-Software Engineering Fellow  |  Jul 2024 – Sep 2024
-● Worked on projects using ReactJS, NextJS, Ollama AI, ChatGPT API, and machine learning.
-● Participated in sessions with engineers from Google, Y Combinator, Stanford, Amazon, and startups.
+DeepVision AI | Remote  
+AI Fellow  |  Jun 2023 - Aug 2023  
+Worked on vision-based ML models using Python and OpenCV.  
+Collaborated on LLM integration into web apps.
 
-Jinnah Lincoln Foundation | New York, USA
-Machine Learning Intern  |  Sep 2023 – Dec 2023
-● Gained practical experience in machine learning and data science through hands-on tasks.
-● Assisted in data analysis, model development, and project implementation.
+HealthSync Analytics | Boston, USA  
+Data Analyst Intern  |  Mar 2023 - May 2023  
+Performed data preprocessing and model training for health datasets.  
+Created dashboards for real-time metric visualization.
 
-EvantageSoft Private Limited | Karachi, Pakistan
-Java Springboot Intern  |  Aug 2023 – Sep 2023
-● Developed REST APIs using Spring Boot.
-● Understood full software development lifecycle and backend API design principles.
+ByteSpace Ltd. | Chicago, USA  
+Backend Developer Intern  |  Jul 2022 - Sep 2022  
+Developed APIs using Spring Boot.  
+Assisted in bug fixing and version control tasks.
 
-PROJECTS
+PROJECTS  
 
-Quality Management System
-● Developed a web app using Node.js, Express.js, React.js, and MySQL, used by 100+ faculty members.
+Smart Campus App  
+Built a full-stack solution using React, Node.js, and Firebase for student services.
 
-Deliberatives – Leaderboards to foster learning
-● Created a platform for users to log learning applications and rank via leaderboards.
+SkillTracker  
+Developed a portal for tracking learning goals and progress using AI suggestions.
 
-Disease Detection System
-● Built a CNN-based model in Python achieving 92% accuracy in pneumonia and tuberculosis detection.
+Crop Disease Classifier  
+Created a CNN model in TensorFlow to detect plant diseases with 90% accuracy.
 
-TealHQ – AI-Powered Resume & Cover Letter Generator
-● Developed a resume/job-matching Next.js app that also generates cover letters.
+ResumeBoost  
+A tool using GPT-4 API to generate resumes and job summaries.
 
-LearnFlow – Collaborative AI Learning Platform
-● Built a platform to organize study resources and auto-generate 100+ flashcards using AI.
+StudyMate  
+An AI-based platform to manage notes and create quizzes from text uploads.
 
-Velora – Complete Health Platform
-● Developed a JS web app with exercise planner, meal planner, and recipe generator.
+HealthHero  
+Built a MERN app for personalized fitness and diet planning.
 
-NFL Big Data Bowl
-● Built ML models to analyze NFL data, improving tackling metric prediction by 15%.
+SportsIQ  
+Applied XGBoost and ensemble models to predict sports outcomes.
 
-ACTIVITIES AND LEADERSHIP
+ACTIVITIES AND LEADERSHIP  
 
-Software Innovators Club | Karachi, Pakistan
-President  |  Oct 2023 – Present
-● Led 50+ member club, organized departmental events, managed sponsorship outreach, and directed exec board.
+AI & Robotics Club | California, USA  
+Vice President  |  Jan 2023 - Present  
+Organized 3 campus-wide hackathons and weekly coding meetups.
 
-SKILLS
-Programming: Java, Python, JavaScript, HTML/CSS, SQL, Node.js, React.js, C++, AI/ML/DL in Python
-Tools: Visual Studio, IntelliJ, PyCharm, Azure, Jupyter Notebooks, Git, Bootstrap, Spring Boot, Agile
+SKILLS  
+Programming: Python, Java, JavaScript, SQL, C++, React, Node.js, Flask, TensorFlow  
+Tools: Git, VS Code, Postman, Docker, JIRA, MySQL, MongoDB, Figma, Linux  
 `;
-
 
 const dummyCoverLetter = `Dear Hiring Manager,
 
@@ -223,7 +221,7 @@ export default function JobApplicationPage() {
         y += 6;
       }
       // Bullet points
-      else if (trimmed.startsWith("●")) {
+      else if (trimmed.startsWith("")) {
         doc.setFontSize(11);
         doc.setFont("helvetica", "normal");
         doc.text(trimmed, 25, y);
@@ -297,6 +295,11 @@ export default function JobApplicationPage() {
     <PageContainer maxWidth="lg">
       {/* Job Description Section */}
       <JobDescriptionPaper elevation={3}>
+      <SectionHeader>
+      <Typography variant="h5" component="h2" gutterBottom>
+        Job Description
+      </Typography>
+    </SectionHeader>
         <Typography variant="h4" component="h1" gutterBottom>
           {dummyJobDescription.title}
         </Typography>
