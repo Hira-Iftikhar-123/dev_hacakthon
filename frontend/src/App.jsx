@@ -14,7 +14,7 @@ const AppContainer = styled.div`
   width: 100vw;
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden; /* Disable horizontal scrolling */
-  background-color: #ecf0f1;
+  background-color: #c5e8e0;
 `;
 
 
