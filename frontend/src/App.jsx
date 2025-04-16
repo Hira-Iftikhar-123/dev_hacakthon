@@ -7,6 +7,7 @@ import HomePage from "./Components/ResumeUpload";
 import SoftSkillsForm from "./Components/SoftSkills";
 import Login from "./Components/login";
 import Location from "./Components/location";
+import Landing from "./Components/Landing";
 const AppContainer = styled.div`
   // display: flex;
   height: 100vh;
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/softskills" element={<SoftSkillsForm />} />
           <Route path="/login" element={<Login />} />
           <Route path="/location" element={<Location />} />
+          <Route path="/" element={<Landing />} />
         </Routes>
       </AppContainer>
     </Router>
