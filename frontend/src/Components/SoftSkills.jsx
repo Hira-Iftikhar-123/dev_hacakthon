@@ -1,31 +1,77 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Button, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel, Typography, Paper } from '@mui/material';
+import {
+  Button, Radio, RadioGroup, FormControlLabel,
+  FormControl, FormLabel, Typography, Paper
+} from '@mui/material';
 import { motion } from 'framer-motion';
 
+// Styled Components
 const Container = styled.div`
-  background-color: #2b6777;
+  background: linear-gradient(to bottom right, #d1f2eb, #ffffff);
   min-height: 100vh;
-  padding: 2rem;
-  color: white;
+  padding: 3rem 1rem;
+  color: #2b6777;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
+const QuestionGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+`;
+
 const QuestionCard = styled(Paper)`
-  width: 80%;
-  padding: 2rem;
-  margin: 1rem 0;
-  background-color: #ffffff;
+  width: 320px;
+  padding: 1.5rem;
+  border-radius: 15px !important;
+  background-color: #2b6777 !important;
+  color: #e0f7f3 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
 `;
 
 const ResultCard = styled(Paper)`
-  width: 80%;
-  padding: 2rem;
-  margin: 1rem 0;
-  background-color: #ffffff;
+  width: 90%;
+  padding: 2.5rem;
+  margin: 2rem 0;
+  background-color: #2b6777 !important;
+  color: #e0f7f3 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2) !important;
 `;
+
+const StyledButton = styled(Button)`
+  && {
+    margin-top: 2rem;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 50px;
+    background-color: #52ab98;
+    color: white;
+    text-transform: none;
+    &:hover {
+      background-color: #469d88;
+    }
+  }
+`;
+
+const improvementTips = {
+  'Ignore it': 'Try to resolve conflicts through open communication.',
+  'Wait for others to act': 'Take initiative and show leadership.',
+  'Passive': 'Be more assertive and express yourself confidently.',
+  'Aggressive': 'Practice empathy and respect in your communication.',
+  'Randomly': 'Organize tasks using priority and deadlines.',
+  'Argue back': 'Accept feedback with an open mind and improve.',
+  'Take it personally': 'Separate feedback from personal feelings.',
+  'Avoid work': 'Use stress management techniques like time-blocking.',
+  'Solo player': 'Collaborate more and trust your teammates.',
+  'Impulsive': 'Pause and evaluate before making decisions.',
+  'Not adaptable': 'Welcome change as an opportunity to grow.',
+};
 
 const questions = [
   { id: 1, question: 'How do you handle conflict in a team?', options: ['Ignore it', 'Address it directly', 'Wait for others to act', 'Talk to a manager'] },
@@ -56,47 +102,81 @@ export default function SoftSkillsForm() {
     }
   };
 
+  const getImprovementAreas = () => {
+    return questions
+      .filter(q => improvementTips[answers[q.id]])
+      .map(q => ({
+        question: q.question,
+        answer: answers[q.id],
+        suggestion: improvementTips[answers[q.id]],
+      }));
+  };
+
   return (
     <Container>
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-        <Typography variant="h4" gutterBottom>Soft Skills Questionnaire</Typography>
+      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <Typography variant="h3" gutterBottom style={{ fontWeight: 'bold' }}>Soft Skills Assessment</Typography>
+        <Typography variant="subtitle1" style={{ color: '#444' }}>Answer honestly to understand your strengths and improvement areas.</Typography>
       </motion.div>
-      {
-        submitted ? (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <ResultCard elevation={3}>
-              <Typography variant="h5">Your Responses</Typography>
-              {questions.map((q) => (
-                <div key={q.id} style={{ marginTop: '1rem' }}>
-                  <Typography variant="subtitle1"><strong>{q.question}</strong></Typography>
-                  <Typography variant="body1">{answers[q.id]}</Typography>
+
+      {submitted ? (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+          <ResultCard elevation={4}>
+            <Typography variant="h5" gutterBottom>Your Personalized Feedback</Typography>
+            <Typography variant="body1" gutterBottom style={{ marginBottom: '1rem' }}>
+              Here are your results along with improvement suggestions:
+            </Typography>
+            {getImprovementAreas().length ? (
+              getImprovementAreas().map((item, idx) => (
+                <div key={idx} style={{ marginBottom: '1rem' }}>
+                  <Typography variant="subtitle1"><strong>{item.question}</strong></Typography>
+                  <Typography variant="body2" style={{ marginLeft: '1rem' }}>Your Answer: {item.answer}</Typography>
+                  <Typography variant="body2" style={{ marginLeft: '1rem', color: '#ffcccb' }}>Suggestion: {item.suggestion}</Typography>
                 </div>
-              ))}
-            </ResultCard>
-          </motion.div>
-        ) : (
-          questions.map((q, index) => (
+              ))
+            ) : (
+              <Typography variant="h6" style={{ color: '#b2ff59' }}>Awesome! No major improvement areas detected. Keep it up!</Typography>
+            )}
+
+            <Typography variant="h6" style={{ marginTop: '2rem' }}>Your Responses:</Typography>
+            {questions.map((q) => (
+              <div key={q.id} style={{ marginTop: '0.8rem' }}>
+                <Typography variant="subtitle2"><strong>{q.question}</strong></Typography>
+                <Typography variant="body2">{answers[q.id]}</Typography>
+              </div>
+            ))}
+          </ResultCard>
+        </motion.div>
+      ) : (
+        <QuestionGrid>
+          {questions.map((q, index) => (
             <motion.div key={q.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.1 }}>
-              <QuestionCard elevation={3}>
+              <QuestionCard elevation={4}>
                 <FormControl component="fieldset">
-                  <FormLabel component="legend">{q.question}</FormLabel>
+                  <FormLabel component="legend" style={{ color: '#e0f7f3', marginBottom: '0.5rem' }}>{q.question}</FormLabel>
                   <RadioGroup
                     value={answers[q.id] || ''}
                     onChange={(e) => handleChange(q.id, e.target.value)}
                   >
                     {q.options.map((option, i) => (
-                      <FormControlLabel key={i} value={option} control={<Radio />} label={option} />
+                      <FormControlLabel
+                        key={i}
+                        value={option}
+                        control={<Radio sx={{ color: '#e0f7f3', '&.Mui-checked': { color: '#b2dfdb' } }} />}
+                        label={option}
+                      />
                     ))}
                   </RadioGroup>
                 </FormControl>
               </QuestionCard>
             </motion.div>
-          ))
-        )
-      }
+          ))}
+        </QuestionGrid>
+      )}
+
       {!submitted && (
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Button variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
+          <StyledButton variant="contained" onClick={handleSubmit}>Submit</StyledButton>
         </motion.div>
       )}
     </Container>
