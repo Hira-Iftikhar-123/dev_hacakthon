@@ -918,7 +918,7 @@ function HomePage() {
       // After processing, you would typically navigate to a results page
       console.log("Processing complete")
       // For demo purposes, we'll just go back to options
-      navigate('/dashboard');
+      navigate('/location');
     }, 3000)
   }
 
@@ -931,7 +931,7 @@ function HomePage() {
       // After processing, you would typically navigate to a results page
       console.log("Processing complete", data)
       // For demo purposes, we'll just go back to options
-      navigate("/dashboard")
+      navigate("/location")
     }, 3000)
   }
 

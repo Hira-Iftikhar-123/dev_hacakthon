@@ -5,6 +5,8 @@ import Dashboard from "./Components/Dashboard";
 import JobApplicationPage from "./Components/Job";
 import HomePage from "./Components/ResumeUpload";
 import SoftSkillsForm from "./Components/SoftSkills";
+import Login from "./Components/login";
+import Location from "./Components/location";
 const AppContainer = styled.div`
   // display: flex;
   height: 100vh;
@@ -24,6 +26,8 @@ const App = () => {
           <Route path="/job" element={<JobApplicationPage />} />
           <Route path="/resume" element={<HomePage />} />
           <Route path="/softskills" element={<SoftSkillsForm />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/location" element={<Location />} />
         </Routes>
       </AppContainer>
     </Router>
